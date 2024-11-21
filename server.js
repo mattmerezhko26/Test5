@@ -17,36 +17,13 @@ const sequelize = new Sequelize('neondb', 'neondb_owner', 'rb3gBLTkhH7W', {
   },
 });
 const Student = sequelize.define('Student', {
-  student_id: {
-    type: Sequelize.STRING,
-    primaryKey: true, 
-    allowNull: false,  
-  },
-  first_name: {
-    type: Sequelize.STRING,
-    allowNull: false,  
-  },
-  last_name: {
-    type: Sequelize.STRING,
-    allowNull: false, 
-  },
-  date_of_birth: {
-    type: Sequelize.DATEONLY,  
-    allowNull: false,  
-  },
-  email: {
-    type: Sequelize.STRING,
-    unique: true,  
-    allowNull: false,  
-  },
-  enrollment_date: {
-    type: Sequelize.DATEONLY,  
-    allowNull: false,  
-  },
-  courses: {
-    type: Sequelize.JSONB,  
-    allowNull: true,  
-  },
+  student_id: {type: Sequelize.STRING,primaryKey: true, allowNull: false,},
+  first_name: {type: Sequelize.STRING,allowNull: false, },
+  last_name: {type: Sequelize.STRING,allowNull: false, },
+  date_of_birth: {type: Sequelize.DATEONLY,  allowNull: false,  },
+  email: {type: Sequelize.STRING,unique: true,  allowNull: false,  },
+  enrollment_date: {type: Sequelize.DATEONLY,  allowNull: false,  },
+  courses: {type: Sequelize.JSONB,  allowNull: true,},
 });
 sequelize.sync({ force: true }).then(() => {
   console.log('Students table has been created.');
@@ -81,15 +58,13 @@ app.get('/students/:student_id', async (req, res) => {
     res.status(200).json(student);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error retrieving student.' });
+    res.status(500).json({ message: 'Error with  students.' });
   }
 });
 app.put('/students/:student_id', async (req, res) => {
   try {
     const { first_name, last_name, date_of_birth, email, enrollment_date, courses } = req.body;
-    
     const student = await Student.findOne({ where: { student_id: req.params.student_id } });
-    
     if (!student) {
       return res.status(404).json({ message: 'Student not found.' });
     }
@@ -97,7 +72,7 @@ app.put('/students/:student_id', async (req, res) => {
     res.status(200).json(student);
   } catch (error) {
     console.error(error);
-    res.status(400).json({ message: 'Error updating student record.' });
+    res.status(400).json({ message: 'Error wit students record.' });
   }
 });
 app.delete('/students/:student_id',async(req,res) =>{
@@ -105,7 +80,6 @@ app.delete('/students/:student_id',async(req,res) =>{
     const student = await Student.findOne({where: {student_id:req.params.student_id},});
     if(!student){
       return res.status(404).json({message: 'Student not found'});
-
     }
     await student.destroy();
     res.status(200).json({ message: 'Student deleted successfully.' });
@@ -113,12 +87,7 @@ app.delete('/students/:student_id',async(req,res) =>{
     console.error(error);
     res.status(500).json({ message: 'Error deleting student record.' });
   }
-
 });
-sequelize
-  .authenticate()
-  .then(() => console.log('Database connected successfully.'))
-  .catch((err) => console.error('Unable to connect to the database:', err));
 app.listen(HTTP_POST,()=> {
   console.log(`Server is running on ${HTTP_POST}`);
 });

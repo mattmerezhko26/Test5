@@ -1,7 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  align-items: flex-start;
-  height: 600px;
+  height: 500px;
   margin: 0;
   padding: 20px;
 }
@@ -13,16 +12,15 @@ form {
 }
 input, textarea {
   width: 100%;
-  padding: 6px;
-  margin-bottom: 12px;
-  font-size: 14px;
+  padding: 5px;
+  margin-bottom: 15px;
+  font-size: 20px;
 }
 button {
   background-color: blue;
   color: white;
-  border: none;
-  padding: 8px 15px;
+  padding: 10px 15px;
   cursor: pointer;
-  border-radius: 4px;
-  font-size: 14px;
+  border-radius: 5px;
+  font-size: 15px;
 }
