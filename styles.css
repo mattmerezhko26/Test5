@@ -1,0 +1,28 @@
+body {
+  font-family: Arial, sans-serif;
+  align-items: flex-start;
+  height: 600px;
+  margin: 0;
+  padding: 20px;
+}
+form {
+  max-width: 300px;
+  width: 90%;
+  padding: 10px;
+  background: #f9f9f9;
+}
+input, textarea {
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+button {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
