@@ -88,6 +88,10 @@ app.delete('/students/:student_id',async(req,res) =>{
     res.status(500).json({ message: 'Error deleting student record.' });
   }
 });
+sequelize
+  .sync({ alter: true })
+  .then(() => console.log('Database synced successfully.'))
+  .catch((error) => console.error('Error syncing database:', error));
 app.listen(HTTP_POST,()=> {
   console.log(`Server is running on ${HTTP_POST}`);
 });
